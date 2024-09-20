@@ -29,8 +29,36 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Your task
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+You have been given the following mock-up design:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![design](design.png "Design")
+
+### Part 1 (Tailwind, React)
+
+Your task is to implement the slider component of the design. It has the following requirements:
+
+1. The cards should slide across the screen infinitely.
+1. When the user hovers over the cards the cards should slow down to an eventual stop and then resume sliding when the user stops hovering.
+1. If a specific card is hovered an interesting and dynamic hover effect should be applied.
+1. Clicking on one of the cards should open a modal with a larger version of the card fixed to the center of the screen.
+    1. There is no design for the look of this modal so you will have to be creative here.
+    1. Bonus points for if you are able to animate the card from its small version to the full version seamlessly.
+1. The component should be fully responsive.
+
+### Part 2 (Next.js)
+
+1. The list of items should come from an API. Make user of Next.js route handlers to create a mock route: https://nextjs.org/docs/app/building-your-application/routing/route-handlers
+1. The mock route should return a list of the cards.
+1. Simulate a long running request by setting a timeout.
+1. Create a second route that always returns an error after a few seconds.
+1. Call the first route from the client and populate the cards with the data from the API.
+1. Call the second (broken) route and demonstrate how your component will gracefully handle the error.
+
+### Technical requirements / considerations
+
+1. Careful consideration should be given to any additional dependencies.
+1. The slider component should take in list of items to display as props.
+1. Strict typescript types should be in place.
+1. Make sure to handle loading and error states correctly.
