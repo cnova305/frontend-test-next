@@ -15,12 +15,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, speaker }) => {
       <div className="bg-white p-6 rounded shadow-lg max-w-md mx-auto">
         <h2 className="text-xl font-bold">{speaker.name}</h2>
         <p className="text-sm text-gray-700">{speaker.company}</p>
-        <Image
-          src={speaker.image}
-          alt={speaker.name}
-          width={200}
-          height={200}
-        />
+        <Image src="/img1.png" alt={speaker.name} width={200} height={200} />
         <h3 className="mt-4 font-semibold">Topics:</h3>
         <ul className="list-disc list-inside">
           {speaker.topics.map((topic, index) => (
