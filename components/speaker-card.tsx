@@ -3,6 +3,7 @@ type SpeakerCardProps = {
   company: string;
   image: string;
   topics: string[];
+  onClick: () => void;
 };
 
 export default function SpeakerCard({
@@ -10,9 +11,13 @@ export default function SpeakerCard({
   company,
   image,
   topics,
+  onClick,
 }: SpeakerCardProps) {
   return (
-    <div className="flex flex-col justify-end w-full aspect-[12/16] rounded-2xl bg-[url('/img1.png')] bg-cover bg-center shadow-xl p-4">
+    <div
+      className="flex flex-col justify-end w-full aspect-[12/16] rounded-2xl bg-[url('/img1.png')] bg-cover bg-center shadow-xl p-4"
+      onClick={onClick}
+    >
       <h2 className="text-3xl font-bold text-white">{name}</h2>
       <h3 className="text-2xl font-bold text-white">{company}</h3>
       <div className="flex space-x-4 py-3 ">
