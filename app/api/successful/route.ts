@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
 
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export async function GET() {
   try {
+    await delay(2500);
+
     const response = await fetch(
       "https://my-json-server.typicode.com/cnova305/my-server/speakers",
     );
