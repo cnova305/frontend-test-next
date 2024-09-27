@@ -1,39 +1,43 @@
-import { SpeakerCardProps } from "@/types";
-import Slider from "../components/slider";
+"use client";
 
-const speakers: SpeakerCardProps[] = [
-  {
-    name: "Tim Cook",
-    company: "Apple",
-    image: "img1.png",
-    topics: ["Business", "CEO", "Products"],
-  },
-  {
-    name: "Susan Wojcicki",
-    company: "Google",
-    image: "img1.png",
-    topics: ["Business", "CEO", "UX"],
-  },
-  {
-    name: "Jack Dorsey",
-    company: "Twitter",
-    image: "img1.png",
-    topics: ["Business", "CEO", "UX"],
-  },
-  {
-    name: "Mark Zuckerberg",
-    company: "Meta",
-    image: "img1.png",
-    topics: ["Business", "CEO", "UX"],
-  },
-];
+import Slider from "@/components/slider";
+import { Speaker } from "@/types";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [speakers, setSpeakers] = useState<Speaker[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchSpeakers() {
+      try {
+        const response = await fetch("/api/speakers");
+        const data = await response.json();
+        console.log("data", data);
+        setSpeakers(data.speakers || []);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError(String(error));
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchSpeakers();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Slider items={speakers} />
-      </main>
+    <div className="border-white-500 flex h-screen w-screen flex-col items-center justify-center border">
+      <div className="container flex gap-4 overflow-hidden border border-red-500">
+        <Slider speakers={speakers} />
+      </div>
     </div>
   );
 }
