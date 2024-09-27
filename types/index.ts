@@ -1,4 +1,4 @@
-export type SpeakerCardProps = {
+export type Speaker = {
   name: string;
   company: string;
   image: string;
