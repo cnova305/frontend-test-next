@@ -9,7 +9,7 @@ export async function GET() {
     await delay(2500);
 
     const response = await fetch(
-      "https://my-json-server.typicode.com/cnova305/my-server/speakers",
+      "https://my-json-server.typicode.com/cnova305/my-json-server/speakers",
     );
     if (!response.ok) {
       throw new Error("Failed to fetch speakers data");
