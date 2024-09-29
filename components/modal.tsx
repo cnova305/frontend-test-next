@@ -1,33 +1,56 @@
-import { SpeakerCardProps } from "@/types";
-import Image from "next/image";
+import { IoCloseSharp } from "react-icons/io5";
+
+import { Speaker } from "@/types";
 import React from "react";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  speaker: SpeakerCardProps;
+  speaker: Speaker;
 }
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, speaker }) => {
+  const cardImage = (url: string): React.CSSProperties => ({
+    backgroundImage: `url(${url})`,
+  });
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded shadow-lg max-w-md mx-auto">
-        <h2 className="text-xl font-bold">{speaker.name}</h2>
-        <p className="text-sm text-gray-700">{speaker.company}</p>
-        <Image src="/img1.png" alt={speaker.name} width={200} height={200} />
-        <h3 className="mt-4 font-semibold">Topics:</h3>
-        <ul className="list-disc list-inside">
-          {speaker.topics.map((topic, index) => (
-            <li key={index}>{topic}</li>
-          ))}
-        </ul>
-        <button
-          onClick={onClose}
-          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
-        >
-          Close
-        </button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="relative mx-auto flex w-[300px] flex-col gap-4 rounded-lg bg-white p-6 shadow-lg md:w-[500px] md:flex-row lg:w-[900px]">
+        <div
+          style={cardImage(speaker.image)}
+          className="aspect-[12/16] min-w-[250px] bg-cover bg-center p-4 md:min-w-[350px]"
+        ></div>
+        <div className="flex w-full flex-col justify-between">
+          <div className="hidden justify-end p-6 md:flex">
+            <button onClick={onClose}>
+              <IoCloseSharp size={35} />
+            </button>
+          </div>
+          <div className="flex flex-col justify-items-end gap-2">
+            <h2 className="text-4xl font-bold text-black">{speaker.name}</h2>
+            <h3 className="text-3xl font-bold text-black">{speaker.company}</h3>
+            <div className="flex space-x-1 md:space-x-4">
+              {speaker.topics.map((topic) => (
+                <div
+                  key={topic}
+                  className="border-blacks flex items-center justify-center rounded-full border bg-black/10 p-2 text-xl font-medium text-black"
+                >
+                  <span>{topic}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center justify-center pt-6 md:hidden">
+              <button
+                className="flex items-center justify-center"
+                onClick={onClose}
+              >
+                Close <IoCloseSharp size={35} />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
