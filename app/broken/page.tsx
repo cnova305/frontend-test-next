@@ -1,7 +1,7 @@
 "use client";
 
 import ParentLayout from "@/components/parent-layout";
-import SliderError from "@/components/slider-error";
+import Slider from "@/components/slider";
 import SliderSkeleton from "@/components/slider-skeleton";
 import { Speaker } from "@/types";
 import { useEffect, useState } from "react";
@@ -40,8 +40,8 @@ export default function Broken() {
 
   return (
     <ParentLayout>
-      {/* <Slider speakers={speakers} /> */}
-      <SliderError />
+      <Slider speakers={speakers} />
+      {/* <SliderError /> */}
     </ParentLayout>
   );
 }
