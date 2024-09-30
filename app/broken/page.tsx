@@ -15,14 +15,20 @@ export default function Broken() {
   useEffect(() => {
     async function fetchSpeakers() {
       try {
-        const response = await fetch("/api/successful");
+        const response = await fetch("/api/broken");
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || "An unknown error occurred");
+        }
+
         const data = await response.json();
         setSpeakers(data.speakers || []);
       } catch (error: unknown) {
         if (error instanceof Error) {
           setError(error.message);
         } else {
-          setError(String(error));
+          setError("Failed to load");
         }
       } finally {
         setLoading(false);
@@ -38,6 +44,7 @@ export default function Broken() {
         <SliderSkeleton />
       </ParentLayout>
     );
+
   if (error)
     return (
       <ParentLayout>
