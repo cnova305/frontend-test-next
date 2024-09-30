@@ -8,7 +8,8 @@ export async function GET() {
   await delay(2500);
 
   return NextResponse.json(
-    { success: false, message: "This is a simulated error response" },
+    { success: false, message: "Failed to load data" },
+
     { status: 500 },
   );
 }
