@@ -2,6 +2,7 @@
 
 import ParentLayout from "@/components/parent-layout";
 import Slider from "@/components/slider";
+import SliderError from "@/components/slider-error";
 import SliderSkeleton from "@/components/slider-skeleton";
 import { Speaker } from "@/types";
 import { useEffect, useState } from "react";
@@ -15,6 +16,12 @@ export default function Successful() {
     async function fetchSpeakers() {
       try {
         const response = await fetch("/api/successful");
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Failed to load");
+        }
+
         const data = await response.json();
         setSpeakers(data.speakers || []);
       } catch (error: unknown) {
@@ -31,12 +38,17 @@ export default function Successful() {
     fetchSpeakers();
   }, []);
 
-  if (error) return <div>Error: {error}</div>;
-
   if (loading)
     return (
       <ParentLayout>
         <SliderSkeleton />
+      </ParentLayout>
+    );
+
+  if (error)
+    return (
+      <ParentLayout>
+        <SliderError />
       </ParentLayout>
     );
 
