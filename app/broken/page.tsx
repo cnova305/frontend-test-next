@@ -19,7 +19,7 @@ export default function Broken() {
 
         if (!response.ok) {
           const errorData = await response.json();
-          throw new Error(errorData.message || "An unknown error occurred");
+          throw new Error(errorData.message || "Failed to load");
         }
 
         const data = await response.json();
@@ -28,7 +28,7 @@ export default function Broken() {
         if (error instanceof Error) {
           setError(error.message);
         } else {
-          setError("Failed to load");
+          setError(String(error));
         }
       } finally {
         setLoading(false);
