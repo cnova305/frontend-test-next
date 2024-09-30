@@ -1,10 +1,11 @@
 import { IoWarning } from "react-icons/io5";
+import CircularProgress from "./circular-progress";
 
-function SliderError() {
+function SliderSkeletonCard() {
   return (
-    <div className="error-color flex aspect-[12/16] min-w-[80%] flex-col items-center justify-center rounded-lg border border-green-500">
+    <div className="skeleton-color flex aspect-[12/16] min-w-[90%] flex-col items-center justify-center rounded-lg">
       <IoWarning size={150} />
-      <div className="text-xl font-bold">Failed to load</div>
+      <CircularProgress />
     </div>
   );
 }
@@ -15,9 +16,9 @@ export default function SliderSkeleton() {
         {Array.from({ length: 4 }, (_, index) => (
           <div
             key={index}
-            className="flex min-w-[70%] items-center justify-center border md:min-w-[25%]"
+            className="flex min-w-[70%] items-center justify-center md:min-w-[25%]"
           >
-            <SliderError />
+            <SliderSkeletonCard />
           </div>
         ))}
       </div>
