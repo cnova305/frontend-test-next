@@ -25,3 +25,107 @@ body {
     text-wrap: balance;
   }
 }
+
+.slider-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.array-container {
+  display: flex;
+  width: calc(200%);
+}
+
+.animate-scroll-infinite {
+  display: flex;
+
+  width: calc(200%);
+  animation: scroll-infinite 20s linear infinite;
+}
+
+.paused {
+  display: flex;
+  width: calc(200%);
+  animation-play-state: paused;
+}
+
+.slider-container:hover .animate-scroll-infinite {
+  animation-play-state: paused;
+}
+
+.speaker-card {
+  transition: transform 0.3s ease;
+}
+
+.speaker-card:hover {
+  transform: scale(1.1);
+}
+
+.modal {
+  animation: bounce-in-zoomin 1s linear 0s 1 normal none;
+}
+
+.error-color {
+  background-color: #f44336;
+  color: #ededed;
+}
+
+.skeleton-color {
+  background-color: #e0e0e0;
+  color: #ededed;
+}
+
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scroll-infinite-two {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes bounce-in-zoomin {
+  0% {
+    transform: scale(7);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  35% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    transform: scale(1.5);
+    animation-timing-function: ease-in;
+  }
+  70% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+  80% {
+    transform: scale(1.24);
+    animation-timing-function: ease-in;
+  }
+  90% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+  95% {
+    transform: scale(1.04);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+}
