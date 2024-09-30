@@ -29,9 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="border-white-500 flex h-screen w-screen flex-col items-center justify-center border">
-          <div className="container flex gap-4 overflow-hidden border border-red-500">
-            {children}
-          </div>
+          <div className="container border border-red-500">{children}</div>
         </div>
       </body>
     </html>
