@@ -48,7 +48,7 @@ export default function Successful() {
   if (error)
     return (
       <ParentLayout>
-        <SliderError />
+        <SliderError errorMessage={error} />
       </ParentLayout>
     );
 

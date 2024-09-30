@@ -1,14 +1,18 @@
 import { IoWarning } from "react-icons/io5";
 
-function SliderErrorCard() {
+function SliderErrorCard({ errorMessage }: { errorMessage: string }) {
   return (
     <div className="error-color flex aspect-[12/16] min-w-[90%] flex-col items-center justify-center rounded-lg">
       <IoWarning size={150} />
-      <div className="text-xl font-bold">Failed to load</div>
+      <div className="text-xl font-bold">{errorMessage}</div>
     </div>
   );
 }
-export default function SliderError() {
+export default function SliderError({
+  errorMessage,
+}: {
+  errorMessage: string;
+}) {
   return (
     <div className="slider-container flex w-[100%]">
       <div className="array-container">
@@ -17,7 +21,7 @@ export default function SliderError() {
             key={index}
             className="flex min-w-[70%] items-center justify-center md:min-w-[25%]"
           >
-            <SliderErrorCard />
+            <SliderErrorCard errorMessage={errorMessage} />
           </div>
         ))}
       </div>
