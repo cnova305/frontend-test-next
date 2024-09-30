@@ -16,15 +16,15 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, speaker }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="relative mx-auto flex w-[300px] flex-col gap-4 rounded-lg bg-white p-6 shadow-lg md:w-[500px] md:flex-row lg:w-[900px]">
         <div
           style={cardImage(speaker.image)}
           className="aspect-[12/16] min-w-[250px] bg-cover bg-center p-4 md:min-w-[350px]"
         ></div>
         <div className="flex w-full flex-col justify-between">
-          <div className="hidden justify-end p-6 md:flex">
-            <button onClick={onClose}>
+          <div className="hidden justify-end p-6 text-white md:flex">
+            <button className="bg-[#dc3545]" onClick={onClose}>
               <IoCloseSharp size={35} />
             </button>
           </div>
@@ -35,7 +35,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, speaker }) => {
               {speaker.topics.map((topic) => (
                 <div
                   key={topic}
-                  className="border-blacks flex items-center justify-center rounded-full border bg-black/10 p-2 text-xl font-medium text-black"
+                  className="flex items-center justify-center rounded-full border border-black bg-black/10 p-2 text-xl font-medium text-black"
                 >
                   <span>{topic}</span>
                 </div>
@@ -43,10 +43,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, speaker }) => {
             </div>
             <div className="flex items-center justify-center pt-6 md:hidden">
               <button
-                className="flex items-center justify-center"
+                className="flex items-center justify-center bg-[#dc3545] text-white"
                 onClick={onClose}
               >
-                Close <IoCloseSharp size={35} />
+                <IoCloseSharp size={35} />
               </button>
             </div>
           </div>
