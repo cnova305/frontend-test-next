@@ -2,6 +2,7 @@
 
 import ParentLayout from "@/components/parent-layout";
 import Slider from "@/components/slider";
+import SliderError from "@/components/slider-error";
 import SliderSkeleton from "@/components/slider-skeleton";
 import { Speaker } from "@/types";
 import { useEffect, useState } from "react";
@@ -37,11 +38,16 @@ export default function Broken() {
         <SliderSkeleton />
       </ParentLayout>
     );
+  if (error)
+    return (
+      <ParentLayout>
+        <SliderError />
+      </ParentLayout>
+    );
 
   return (
     <ParentLayout>
       <Slider speakers={speakers} />
-      {/* <SliderError /> */}
     </ParentLayout>
   );
 }
