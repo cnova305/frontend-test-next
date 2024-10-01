@@ -1,10 +1,10 @@
-import { IoWarning } from "react-icons/io5";
+import { IoPerson } from "react-icons/io5";
 import CircularProgress from "./circular-progress";
 
 function SliderSkeletonCard() {
   return (
     <div className="skeleton-color flex aspect-[12/16] min-w-[90%] flex-col items-center justify-center rounded-lg">
-      <IoWarning size={150} />
+      <IoPerson size={150} />
       <CircularProgress />
     </div>
   );
