@@ -1,64 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Take-home Assignment Submission
 
-## Getting Started
+Thank you for the opportunity to work on this assignment. It was a rewarding experience, and I enjoyed tackling the challenges it presented. Below, I outline my approach, the key decisions I made, and the considerations that influenced my solution.
 
-First, run the development server:
+## Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+You can view the live deployment of my solution here: [Live Demo](https://frontend-test-next.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Approach & Key Decisions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. **TailwindCSS Adoption**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Initially, I considered using additional dependencies like Framer Motion, primarily because I was unfamiliar with TailwindCSS. However, after researching and experimenting with the framework, I gained a strong appreciation for its simplicity and utility. Coming from a background of using UI libraries such as MaterialUI, working with TailwindCSS felt refreshing, allowing me to focus on fundamental web development principles while maintaining a clean and efficient design. I did, however, include `react-icons` to easily integrate icons into the UI for improved user experience and navigation.
 
-## Learn More
+### 2. **API Implementation with My JSON Server**
 
-To learn more about Next.js, take a look at the following resources:
+The task required fetching a list of speakers from an API. To achieve this, I used [My JSON Server](https://my-json-server.typicode.com/), a tool by Typicode that allows for the quick setup of a fake REST API. It enabled me to simulate a real API by creating a `db.json` file that represents the speaker data. This approach offered a minimal-effort solution that worked seamlessly for this project.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. **Performance Optimization**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+A key consideration was performance optimization. I used lazy loading to ensure that components were only loaded when necessary. This technique improved initial load times by loading critical components first and deferring non-essential components until they were needed, resulting in a smoother user experience.
 
-## Your task
+### 4. **End-to-End Testing with Cypress**
 
-You have been given the following mock-up design:
+Testing was an essential part of the development process. I implemented end-to-end tests using Cypress to ensure that the application worked as expected in various scenarios. Both successful and erroneous routes were tested to guarantee robustness. Below are the steps to run the tests:
 
-![design](design.png "Design")
+## Running Cypress Tests
 
-### Part 1 (Tailwind, React)
+To run the end-to-end tests:
 
-Your task is to implement the slider component of the design. It has the following requirements:
-
-1. The cards should slide across the screen infinitely.
-1. When the user hovers over the cards the cards should slow down to an eventual stop and then resume sliding when the user stops hovering.
-1. If a specific card is hovered an interesting and dynamic hover effect should be applied.
-1. Clicking on one of the cards should open a modal with a larger version of the card fixed to the center of the screen.
-    1. There is no design for the look of this modal so you will have to be creative here.
-    1. Bonus points for if you are able to animate the card from its small version to the full version seamlessly.
-1. The component should be fully responsive.
-
-### Part 2 (Next.js)
-
-1. The list of items should come from an API. Make user of Next.js route handlers to create a mock route: https://nextjs.org/docs/app/building-your-application/routing/route-handlers
-1. The mock route should return a list of the cards.
-1. Simulate a long running request by setting a timeout.
-1. Create a second route that always returns an error after a few seconds.
-1. Call the first route from the client and populate the cards with the data from the API.
-1. Call the second (broken) route and demonstrate how your component will gracefully handle the error.
-
-### Technical requirements / considerations
-
-1. Careful consideration should be given to any additional dependencies.
-1. The slider component should take in list of items to display as props.
-1. Strict typescript types should be in place.
-1. Make sure to handle loading and error states correctly.
+1. Clone the repository.
+2. Install dependencies with `npm install`.
+3. To run the tests with the Cypress UI, execute `npx cypress open`.
+4. For headless test execution, run `npx cypress run`.
