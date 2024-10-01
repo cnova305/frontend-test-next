@@ -22,6 +22,8 @@ A key consideration was performance optimization. I used lazy loading to ensure 
 
 ### 4. **End-to-End Testing with Cypress**
 
+![Screenshot of the Application](/tests.png)
+
 Testing was an essential part of the development process. I implemented end-to-end tests using Cypress to ensure that the application worked as expected in various scenarios. Both successful and erroneous routes were tested to guarantee robustness. Below are the steps to run the tests:
 
 ## Running Cypress Tests
