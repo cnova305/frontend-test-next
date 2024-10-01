@@ -10,12 +10,14 @@ export default function Cover() {
       <div className="text-3xl font-bold">Take Home Assignment</div>
       <div className="flex flex-row gap-4">
         <button
+          data-test-id="success-button"
           className="flex h-16 w-48 items-center justify-center gap-2 rounded-lg bg-[#28a745] text-lg font-bold text-[#ffffff]"
           onClick={() => (window.location.href = "/successful")}
         >
           Successful <IoCheckmarkDoneCircleSharp size={30} />
         </button>
         <button
+          data-test-id="broken-button"
           className="flex h-16 w-48 items-center justify-center gap-2 rounded-lg bg-[#dc3545] text-lg font-bold text-[#ffffff]"
           onClick={() => (window.location.href = "/broken")}
         >
