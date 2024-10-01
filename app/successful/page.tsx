@@ -1,11 +1,13 @@
 "use client";
 
-import ParentLayout from "@/components/parent-layout";
-import Slider from "@/components/slider";
-import SliderError from "@/components/slider-error";
-import SliderSkeleton from "@/components/slider-skeleton";
 import { Speaker } from "@/types";
-import { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
+
+// Lazily load the components
+const ParentLayout = React.lazy(() => import("@/components/parent-layout"));
+const Slider = React.lazy(() => import("@/components/slider"));
+const SliderError = React.lazy(() => import("@/components/slider-error"));
+const SliderSkeleton = React.lazy(() => import("@/components/slider-skeleton"));
 
 export default function Successful() {
   const [speakers, setSpeakers] = useState<Speaker[]>([]);
@@ -40,21 +42,33 @@ export default function Successful() {
 
   if (loading)
     return (
-      <ParentLayout>
-        <SliderSkeleton />
-      </ParentLayout>
+      <Suspense fallback={<div>Loading layout...</div>}>
+        <ParentLayout>
+          <Suspense fallback={<div>Loading slider skeleton...</div>}>
+            <SliderSkeleton />
+          </Suspense>
+        </ParentLayout>
+      </Suspense>
     );
 
   if (error)
     return (
-      <ParentLayout>
-        <SliderError errorMessage={error} />
-      </ParentLayout>
+      <Suspense fallback={<div>Loading layout...</div>}>
+        <ParentLayout>
+          <Suspense fallback={<SliderSkeleton />}>
+            <SliderError errorMessage={error} />
+          </Suspense>
+        </ParentLayout>
+      </Suspense>
     );
 
   return (
-    <ParentLayout>
-      <Slider speakers={speakers} />
-    </ParentLayout>
+    <Suspense fallback={<div>Loading layout...</div>}>
+      <ParentLayout>
+        <Suspense fallback={<SliderSkeleton />}>
+          <Slider speakers={speakers} />
+        </Suspense>
+      </ParentLayout>
+    </Suspense>
   );
 }
